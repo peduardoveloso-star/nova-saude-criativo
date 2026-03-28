@@ -41,7 +41,7 @@ export default function Generator() {
   const tweetImgRef = useRef<HTMLInputElement>(null);
 
   // Profile
-  const [displayName, setDisplayName] = useState('WILLIAM ARAUJO | Médico CRM-MG 76.962');
+  const [displayName, setDisplayName] = useState('Dr. William Araujo');
   const [handle,      setHandle]      = useState('drwilliamararujo');
   const [photoUrl,    setPhotoUrl]    = useState<string>('/dr-william.jpg');
 
