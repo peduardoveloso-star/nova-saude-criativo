@@ -52,7 +52,7 @@
   gap: 10px;
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid var(--red);
+  border: 1px solid #00B4D8;
   background: rgba(224,36,58,.06);
   margin-bottom: 6px;
 }
@@ -157,7 +157,7 @@
 .actJpeg { background: transparent; color: var(--text); }
 .actJpeg:hover { background: var(--bg2); }
 .actPng { background: var(--red); border-color: var(--red); color: #fff; }
-.actPng:hover { background: var(--red-hover); }
+.actPng:hover { background: #0099b8; }
 
 /* ── CENTER ───────────────────────────────────────────────────────────────── */
 .center {
@@ -192,7 +192,7 @@
 
 .toneSeg { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
 .toneBtn { flex: 1; padding: 9px 4px; font-size: 12px; background: transparent; border: none; color: var(--muted); cursor: pointer; font-family: inherit; transition: all .15s; }
-.toneBtn.active { background: #e0243a; color: #fff; }
+.toneBtn.active { background: #00B4D8; color: #fff; }
 
 .ctaList { display: flex; flex-direction: column; gap: 6px; }
 .ctaItem { padding: 10px 13px; border-radius: 10px; border: 1px solid var(--border); cursor: pointer; font-size: 12px; color: var(--muted); transition: all .15s; background: var(--bg2); }
