@@ -376,7 +376,7 @@ export default function Generator() {
           <div className={styles.secTitle}>Tom</div>
           <div className={styles.toneSeg}>
             {(['provocativo','educativo','direto'] as Tone[]).map(t => (
-              <button key={t} className={`${styles.toneBtn} ${tone===t?styles.active:''}`} onClick={() => setTone(t)}>
+              <button key={t} className={`${styles.toneBtn} ${tone===t ? styles.active : ''}`} onClick={() => { setTone(t); }}>
                 {t.charAt(0).toUpperCase()+t.slice(1)}
               </button>
             ))}
