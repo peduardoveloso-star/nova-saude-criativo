@@ -3,33 +3,30 @@
 .dim   { background: #15202b; color: #e7e9ea; }
 .light { background: #fff; color: #0f1419; }
 
-.inner { padding: 16px 16px 0; }
-.header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.inner { padding: 16px 16px 4px; }
+.header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
 .ava { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #2a2a2a; }
 .ava img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .info { flex: 1; min-width: 0; }
-.nameRow { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.nameRow { display: flex; align-items: center; gap: 4px; }
 .name { font-size: 15px; font-weight: 700; }
 .badge { width: 18px; height: 18px; flex-shrink: 0; }
 .handleText { font-size: 14px; color: #71767b; }
 .logo { margin-left: auto; opacity: .6; flex-shrink: 0; }
 
-.body { font-size: 15px; line-height: 1.55; margin-bottom: 12px; white-space: pre-wrap; word-break: break-word; }
+.body { font-size: 16px; line-height: 1.6; margin-bottom: 14px; white-space: pre-wrap; word-break: break-word; }
 .blue { color: #1d9bf0; }
 
 .tweetImg { border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
 .tweetImg img { width: 100%; display: block; max-height: 260px; object-fit: cover; }
 
-.border { border-top: 1px solid #2f2f2f; margin: 0 -16px; padding: 10px 16px; }
-.light .border { border-color: #cfd9de; }
-.meta { font-size: 13px; color: #71767b; margin-bottom: 8px; }
+.meta { font-size: 14px; color: #71767b; padding: 10px 0; }
 .light .meta { color: #536471; }
-.engRow { display: flex; align-items: center; gap: 14px; }
-.engItem { font-size: 13px; color: #71767b; }
 
 .divider { border: none; border-top: 1px solid #2f2f2f; margin: 0 -16px; }
 .light .divider { border-color: #cfd9de; }
 
-.bottom { padding: 10px 16px 14px; }
-.engBar { display: flex; align-items: center; gap: 16px; }
-.engAction { display: flex; align-items: center; gap: 4px; color: #71767b; font-size: 13px; }
+.engBar { display: flex; align-items: center; gap: 4px; padding: 4px 0 10px; }
+.engAction { display: flex; align-items: center; gap: 6px; color: #71767b; font-size: 13px; padding: 8px 10px; border-radius: 9999px; cursor: pointer; transition: background .15s; }
+.engAction:hover { color: #1d9bf0; background: rgba(29,155,240,.1); }
+.engAction span { font-size: 13px; }
