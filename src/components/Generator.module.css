@@ -1,15 +1,3 @@
-:root {
-  --red: #e0243a;
-  --red-hover: #c41e32;
-  --bg1: #0f0f0f;
-  --bg2: #1a1a1a;
-  --bg3: #2a2a2a;
-  --border: #2f2f2f;
-  --text: #e7e9ea;
-  --muted: #71767b;
-  --accent: #1d9bf0;
-}
-
 .app {
   display: grid;
   grid-template-columns: 280px 1fr 300px;
