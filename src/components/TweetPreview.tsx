@@ -23,7 +23,10 @@ interface Props {
 
 function formatDate(dtMode: 'now'|'custom', customDt: string) {
   const dt = dtMode === 'custom' && customDt ? new Date(customDt) : new Date();
-  return dt.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit' });
+  return dt.toLocaleDateString('pt-BR', {
+    day: 'numeric', month: 'short', year: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+  });
 }
 
 function formatText(raw: string) {
@@ -51,8 +54,27 @@ function formatText(raw: string) {
 }
 
 const BADGE_COLORS: Record<VerifyType, string> = {
-  none: '', blue: '#1d9bf0', gold: '#f4b400', gov: '#829aab',
+  none: '#1d9bf0', blue: '#1d9bf0', gold: '#f4b400', gov: '#829aab',
 };
+
+function IconReply() {
+  return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 7.501 3.58 7.501 8 0 4.27-2.93 7.67-7.05 8.18l.024.82H12.7c-.57 0-1.053-.402-1.172-.96l-.133-.62c-.108-.508.245-1 .764-1.083C15.226 16.67 17.623 13.6 17.623 10c0-2.96-2.13-6-5.501-6H9.756C6.505 4 3.751 6.92 3.751 10c0 2.99 1.965 5.42 4.703 6.18-.196.34-.308.73-.308 1.14v.68H7.11c-3.63-.5-5.36-3.71-5.36-8z"/></svg>;
+}
+function IconRepost() {
+  return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"/></svg>;
+}
+function IconLike() {
+  return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></svg>;
+}
+function IconViews() {
+  return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"/></svg>;
+}
+function IconBookmark() {
+  return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"/></svg>;
+}
+function IconShare() {
+  return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.12 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z"/></svg>;
+}
 
 export default function TweetPreview({ displayName, handle, photoUrl, tweetText, tweetImgUrl, dtMode, customDt, verify, tweetTheme, platform, showEng, replies, reposts, likes, views, bookmarks }: Props) {
   const themeClass = tweetTheme === 'dim' ? styles.dim : tweetTheme === 'light' ? styles.light : styles.dark;
@@ -60,21 +82,17 @@ export default function TweetPreview({ displayName, handle, photoUrl, tweetText,
   return (
     <div className={`${styles.wrap} ${themeClass}`}>
       <div className={styles.inner}>
-        {/* Header */}
         <div className={styles.header}>
           <div className={styles.ava}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             {photoUrl && <img src={photoUrl} alt="avatar" />}
           </div>
           <div className={styles.info}>
             <div className={styles.nameRow}>
               <span className={styles.name}>{displayName}</span>
-              {verify !== 'none' && (
-                <svg className={styles.badge} viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="12" fill={BADGE_COLORS[verify]} />
-                  <path d="M9.5 16.5l-3.5-3.5 1.4-1.4 2.1 2.1 5.1-5.1 1.4 1.4z" fill="white" />
-                </svg>
-              )}
+              <svg className={styles.badge} viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="12" fill={BADGE_COLORS[verify]} />
+                <path d="M9.5 16.5l-3.5-3.5 1.4-1.4 2.1 2.1 5.1-5.1 1.4 1.4z" fill="white" />
+              </svg>
             </div>
             <div className={styles.handleText}>@{handle}</div>
           </div>
@@ -89,40 +107,25 @@ export default function TweetPreview({ displayName, handle, photoUrl, tweetText,
           )}
         </div>
 
-        {/* Body */}
         <div className={styles.body}>{formatText(tweetText)}</div>
 
-        {/* Tweet image */}
         {tweetImgUrl && (
           <div className={styles.tweetImg}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={tweetImgUrl} alt="tweet image" />
           </div>
         )}
 
-        {/* Meta */}
-        <div className={styles.border}>
-          <div className={styles.meta}>{formatDate(dtMode, customDt)}</div>
-          {showEng && (
-            <div className={styles.engRow}>
-              <span className={styles.engItem}><b>{bookmarks}</b> Bookmarks</span>
-            </div>
-          )}
-        </div>
-
+        <div className={styles.meta}>{formatDate(dtMode, customDt)}</div>
         <hr className={styles.divider} />
 
-        {/* Engagement bar */}
         {showEng && (
-          <div className={styles.bottom}>
-            <div className={styles.engBar}>
-              <span className={styles.engAction}>💬 {replies}</span>
-              <span className={styles.engAction}>🔁 {reposts}</span>
-              <span className={styles.engAction}>♡ {likes}</span>
-              <span className={styles.engAction}>📊 {views}</span>
-              <span className={styles.engAction}>🔖 {bookmarks}</span>
-              <span className={styles.engAction} style={{marginLeft:'auto'}}>⬆</span>
-            </div>
+          <div className={styles.engBar}>
+            <div className={styles.engAction}><IconReply /><span>{replies}</span></div>
+            <div className={styles.engAction}><IconRepost /><span>{reposts}</span></div>
+            <div className={styles.engAction}><IconLike /><span>{likes}</span></div>
+            <div className={styles.engAction}><IconViews /><span>{views}</span></div>
+            <div className={styles.engAction}><IconBookmark /><span>{bookmarks}</span></div>
+            <div className={styles.engAction} style={{marginLeft:'auto'}}><IconShare /></div>
           </div>
         )}
       </div>
