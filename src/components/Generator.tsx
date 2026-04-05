@@ -9,23 +9,27 @@ export type TweetTheme = 'dark' | 'dim' | 'light';
 export type Platform   = 'x' | 'twitter';
 export type Format     = '1:1' | '4:5' | '9:16';
 export type Tone       = 'provocativo' | 'educativo' | 'direto';
-export type ThemeKey   = 'parasitas' | 'detox' | 'figado' | 'hormonios' | 'inflamacao' | 'rotina';
+export type ThemeKey   = 'cansaco' | 'inchaço' | 'emagrecer' | 'hormonios' | 'cancer' | 'gravidez' | 'menopausa' | 'intestino';
 
 // ── Copy themes ────────────────────────────────────────────────────────────────
 const THEMES: Record<ThemeKey, { name: string; desc: string; prompt: string }> = {
-  parasitas:  { name: 'Parasitas ocultos',   desc: 'Sintomas silenciosos que você ignora',      prompt: 'parasitas intestinais ocultos e seus sintomas silenciosos: cansaço crônico, inchaço abdominal, compulsão por doces, baixa imunidade, dificuldade de emagrecer' },
-  detox:      { name: 'Detox Hell',           desc: 'Reset metabólico profundo e agressivo',     prompt: 'o Detox Hell — reset metabólico agressivo que elimina toxinas, reduz inflamação e acelera o metabolismo em 21 dias' },
-  figado:     { name: 'Saúde do fígado',      desc: 'Central de desintoxicação do corpo',        prompt: 'a importância crítica do fígado como central de desintoxicação e sinais de sobrecarga hepática que impactam energia, pele e humor' },
-  hormonios:  { name: 'Hormônios & TPM',      desc: 'Toxinas, equilíbrio e saúde feminina',      prompt: 'a conexão direta entre acúmulo de toxinas, desequilíbrio hormonal, TPM intensa e menopausa precoce em mulheres' },
-  inflamacao: { name: 'Anti-inflamatório',    desc: 'Alimentos que curam vs. que inflamam',      prompt: 'alimentos anti-inflamatórios que curam o corpo vs. alimentos ultra-processados que inflamam e sabotam o metabolismo' },
-  rotina:     { name: 'Rotina Zero Toxinas',  desc: 'Hábitos sustentáveis no longo prazo',       prompt: 'como construir uma rotina sustentável Zero Toxinas com os 10 pilares diários de saúde sem viver em restrição' },
+  cansaco:    { name: 'Cansaço ao acordar',     desc: 'Acorda exausta mesmo dormindo horas',       prompt: 'cansaço extremo ao acordar — mulheres que dormem 8h e acordam exaustas, sem energia para trabalhar ou cuidar dos filhos, já testaram de tudo sem resultado. A causa real é o acúmulo de toxinas que sobrecarregam o fígado e impedem a recuperação celular durante o sono' },
+  inchaço:    { name: 'Inchaço & Barriga',      desc: 'Barriga estufada mesmo comendo bem',        prompt: 'inchaço abdominal crônico, barriga estufada, gases, retenção de líquido nas mãos e pés — mulheres que se alimentam bem mas continuam inchadas, pois a raiz do problema é inflamação intestinal e toxinas acumuladas, não a dieta' },
+  emagrecer:  { name: 'Dificuldade de emagrecer', desc: 'Faz tudo certo e a balança não mexe',    prompt: 'dificuldade crônica de emagrecer mesmo com dieta e exercício — mulheres que já tentaram tudo: nutricionistas, dietas, shakes, medicamentos, mas o peso não sai. O motivo real é que o corpo intoxicado bloqueia o metabolismo e a queima de gordura' },
+  hormonios:  { name: 'Hormônios desregulados', desc: 'TPM intensa, ciclo irregular, humor',       prompt: 'desregulação hormonal causada por acúmulo de toxinas — TPM intensa, ciclo irregular, humor instável, dores de cabeça hormonais, menopausa antecipada. As toxinas ambientais agem como disruptores endócrinos e sabotam o equilíbrio hormonal feminino' },
+  cancer:     { name: 'Medo de adoecer',        desc: 'Medo de câncer, envelhecer doente',         prompt: 'medo real de desenvolver doenças graves como câncer, Alzheimer e doenças autoimunes — mulheres com histórico familiar ou que sentem que o corpo está pedindo socorro. O acúmulo silencioso de toxinas ao longo dos anos é um dos principais fatores de risco ignorados pela medicina tradicional' },
+  gravidez:   { name: 'Fertilidade & Gestação', desc: 'Querendo engravidar com saúde',             prompt: 'mulheres que querem engravidar ou ter uma gestação saudável e descobriram que toxinas acumuladas no corpo comprometem a fertilidade, a qualidade dos óvulos e a saúde do bebê. A desintoxicação antes da gestação é fundamental e ignorada pela maioria dos médicos' },
+  menopausa:  { name: 'Menopausa & Longevidade', desc: 'Envelhecer com saúde e disposição',        prompt: 'mulheres na perimenopausa e menopausa que querem envelhecer com saúde, disposição e autonomia — sem depender de remédios, sem engordar, sem perder a energia. A desintoxicação nessa fase potencializa os hormônios remanescentes e melhora drasticamente a qualidade de vida' },
+  intestino:  { name: 'Intestino & Digestão',   desc: 'Preso, gases, digestão lenta',              prompt: 'intestino preso, gases crônicos, digestão lenta, permeabilidade intestinal — mulheres que já foram a médicos e nutricionistas sem solução. O intestino inflamado por toxinas é a raiz de mais de 70% dos sintomas que as mulheres relatam: cansaço, inchaço, queda de cabelo, enxaqueca e até depressão' },
 };
 
 const CTAS = [
+  'Clique em Saiba Mais e conheça o Protocolo Zero Toxinas 21D.',
   'Acesse o Protocolo Zero Toxinas 21D no link da bio.',
   'Comece seu detox hoje. Link na bio.',
+  'Salve esse post — você vai precisar.',
+  'Manda pra uma amiga que precisa ver isso.',
   'Conheça o protocolo completo. Link na bio.',
-  'Salve esse post. Você vai precisar.',
 ];
 
 const FORMAT_INFO: Record<Format, { px: string; label: string; width: number }> = {
