@@ -68,7 +68,7 @@ export default function Generator() {
   const [format,      setFormat]      = useState<Format>('1:1');
 
   // Copy panel
-  const [copyTheme,   setCopyTheme]   = useState<ThemeKey>('parasitas');
+  const [copyTheme,   setCopyTheme]   = useState<ThemeKey>('cansaco');
   const [tone,        setTone]        = useState<Tone>('provocativo');
   const [cta,         setCta]         = useState(CTAS[0]);
 
