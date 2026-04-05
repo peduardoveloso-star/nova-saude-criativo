@@ -159,6 +159,38 @@
 .actPng { background: #00B4D8; border-color: #00B4D8; color: #fff; }
 .actPng:hover { background: #0099b8; }
 
+/* ── NEW: color swatch row ────────────────────────────────────────────────── */
+.colorRow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+
+.colorSwatch {
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+  outline: 3px solid transparent; outline-offset: 2px; transition: outline .15s;
+  flex-shrink: 0;
+}
+.colorSwatch.swatchActive { outline-color: #00B4D8; }
+
+.colorPickerLabel {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--bg3);
+  border: 1px solid var(--border); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; flex-shrink: 0; overflow: hidden;
+}
+.colorPickerIcon { font-size: 14px; pointer-events: none; }
+.colorPickerInput { opacity: 0; position: absolute; width: 0; height: 0; }
+
+.textBgBtn {
+  padding: 6px 10px; font-size: 11px; border-radius: 7px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--muted); cursor: pointer; font-family: inherit; transition: all .15s;
+}
+.textBgBtn.active { border-color: #00B4D8; background: rgba(0,180,216,.12); color: var(--text); }
+
+.removeImgBtn {
+  margin-top: 6px; width: 100%; padding: 7px; font-size: 12px;
+  background: transparent; border: 1px solid var(--border); color: var(--muted);
+  border-radius: 7px; cursor: pointer; font-family: inherit; transition: all .15s;
+}
+.removeImgBtn:hover { border-color: #e0243a; color: #e0243a; }
+
 /* ── CENTER ───────────────────────────────────────────────────────────────── */
 .center {
   background: #0a0a0a;
@@ -166,9 +198,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 24px;
-  gap: 16px;
+  padding: 32px 24px;
+  gap: 14px;
 }
+
+/* Template selector */
+.templateSelector {
+  display: flex;
+  gap: 6px;
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.templateBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.templateBtn:hover { color: var(--text); background: var(--bg2); }
+.templateActive { background: #00B4D8 !important; color: #fff !important; }
+
+.templateIcon { font-size: 14px; line-height: 1; }
 .previewTag { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; font-weight: 600; letter-spacing: .05em; }
 .previewDot { width: 7px; height: 7px; border-radius: 50%; background: #00B4D8; display: inline-block; }
 .pxInfo { font-size: 11px; color: var(--muted); }
@@ -178,8 +241,27 @@
 
 /* ── RIGHT ────────────────────────────────────────────────────────────────── */
 .right { background: var(--bg1); border-left: 1px solid var(--border); overflow-y: auto; }
-.rightHeader { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); }
-.rightTitle { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
+.rightHeader { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); gap: 8px; }
+.rightTitle { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); flex: 1; }
+
+.videoGenTrigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  background: rgba(0,180,216,.12);
+  border: 1px solid #00B4D8;
+  color: #00B4D8;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.videoGenTrigger:hover { background: #00B4D8; color: #fff; }
 .sectionR { padding: 14px 18px; border-bottom: 1px solid var(--border); }
 
 .themeList { display: flex; flex-direction: column; gap: 6px; }

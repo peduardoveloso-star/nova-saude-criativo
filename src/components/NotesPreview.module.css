@@ -1,0 +1,85 @@
+.wrap {
+  background: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,.18);
+}
+
+/* iOS Notes top bar */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px 8px;
+  background: #f2f2f7;
+  border-bottom: 1px solid #e0e0e5;
+}
+
+.back {
+  font-size: 17px;
+  color: #007aff;
+  font-weight: 400;
+}
+
+.done {
+  font-size: 17px;
+  color: #007aff;
+  font-weight: 600;
+}
+
+/* Meta: date + time */
+.meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px 6px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.metaDate {
+  font-size: 12px;
+  color: #8e8e93;
+  font-weight: 400;
+}
+
+.metaTime {
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+/* Ruled area */
+.noteBody {
+  flex: 1;
+  overflow: hidden;
+  background: #fff;
+  padding: 0 20px;
+}
+
+.ruled {
+  padding-top: 8px;
+}
+
+.ruleLine {
+  font-size: 15px;
+  color: #1c1c1e;
+  line-height: 32px;
+  border-bottom: 1px solid #d1d1d6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 32px;
+}
+
+/* Author footer */
+.footer {
+  padding: 12px 20px;
+  font-size: 12px;
+  color: #8e8e93;
+  text-align: right;
+  border-top: 1px solid #f0f0f0;
+  background: #f2f2f7;
+}
