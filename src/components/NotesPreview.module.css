@@ -65,13 +65,14 @@
 }
 
 .ruleLine {
-  font-size: 15px;
+  font-size: 18px;
   color: #1c1c1e;
-  line-height: 32px;
-  border-bottom: 1px solid #d1d1d6;
+  line-height: 38px;
+  border-bottom: 1px solid #ebebeb;
   white-space: pre-wrap;
   word-break: break-word;
-  min-height: 32px;
+  min-height: 38px;
+  letter-spacing: -0.01em;
 }
 
 /* Author footer */

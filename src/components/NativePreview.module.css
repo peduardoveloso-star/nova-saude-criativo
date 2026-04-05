@@ -1,16 +1,13 @@
 .wrap {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 32px rgba(0,0,0,.4);
+  box-shadow: 0 4px 32px rgba(0,0,0,.5);
+  flex-shrink: 0;
 }
 
-/* "Add background" state */
-.placeholder {
+/* Empty bg state */
+.emptyState {
   position: absolute;
   inset: 0;
   display: flex;
@@ -21,33 +18,44 @@
   pointer-events: none;
 }
 
-.placeholderIcon {
-  font-size: 36px;
-  opacity: .4;
-}
+.emptyIcon { font-size: 36px; opacity: .35; }
 
-.placeholderText {
+.emptyText {
   font-size: 13px;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.35);
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Text overlay at bottom */
-.caption {
-  position: relative;
+/* Position zones — absolute, full-width, centered content */
+.zone {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
   z-index: 2;
-  width: 100%;
-  padding: 16px 20px 20px;
-  border-radius: 0;
 }
 
-.captionText {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.55;
+.zoneTop    { top: 24px; }
+.zoneMiddle { top: 50%; transform: translateY(-50%); }
+.zoneBottom { bottom: 24px; }
+
+/* Individual Instagram-style text block */
+.textBlock {
+  font-family: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.45;
+  padding: 9px 18px;
+  border-radius: 7px;
   white-space: pre-wrap;
   word-break: break-word;
-  margin: 0;
-  text-shadow: 0 1px 3px rgba(0,0,0,.2);
+  max-width: 100%;
+  letter-spacing: -0.01em;
+  /* subtle shadow so it reads over any photo */
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }

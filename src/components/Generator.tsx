@@ -4,7 +4,7 @@ import styles from './Generator.module.css';
 import TweetPreview from './TweetPreview';
 import NotesPreview from './NotesPreview';
 import QuestionPreview from './QuestionPreview';
-import NativePreview from './NativePreview';
+import NativePreview, { TextBlock } from './NativePreview';
 import VideoGenerator from './VideoGenerator';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -91,8 +91,10 @@ export default function Generator() {
   const [questionBgImg,  setQuestionBgImg]  = useState<string | null>(null);
 
   // Native template
-  const [nativeBgImg,  setNativeBgImg]  = useState<string | null>(null);
-  const [nativeTextBg, setNativeTextBg] = useState('#000000cc');
+  const [nativeBgImg,    setNativeBgImg]    = useState<string | null>(null);
+  const [nativeBlocks,   setNativeBlocks]   = useState<TextBlock[]>([
+    { id: '1', text: 'Seu texto aqui', bgColor: '#000000', position: 'bottom' },
+  ]);
 
   // Copy panel
   const [copyTheme, setCopyTheme] = useState<ThemeKey>('cansaco');
@@ -200,6 +202,7 @@ export default function Generator() {
     setQuestionAnswer('');
     setQuestionBgImg(null);
     setNativeBgImg(null);
+    setNativeBlocks([{ id: '1', text: 'Seu texto aqui', bgColor: '#000000', position: 'bottom' }]);
   };
 
   // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -208,6 +211,16 @@ export default function Generator() {
     navigator.clipboard.writeText(text);
     showToast('✓ Texto copiado!');
   };
+
+  // ── Native block helpers ─────────────────────────────────────────────────────
+  const addBlock = () => setNativeBlocks(prev => [
+    ...prev, { id: Date.now().toString(), text: '', bgColor: '#000000', position: 'bottom' },
+  ]);
+
+  const removeBlock = (id: string) => setNativeBlocks(prev => prev.filter(b => b.id !== id));
+
+  const updateBlock = (id: string, field: keyof TextBlock, value: string) =>
+    setNativeBlocks(prev => prev.map(b => b.id === id ? { ...b, [field]: value } : b));
 
   const previewWidth = FORMAT_INFO[format].width;
 
@@ -437,15 +450,9 @@ export default function Generator() {
         {templateType === 'native' && (
           <>
             <section className={styles.section}>
-              <div className={styles.secTitle}>Conteúdo</div>
-              <label className={styles.fieldLabel}>Texto sobreposto</label>
-              <textarea className={styles.inp} style={{minHeight:120,resize:'vertical',lineHeight:1.6}} value={tweetText} onChange={e => setTweetText(e.target.value)} />
-            </section>
-
-            <section className={styles.section}>
               <div className={styles.secTitle}>Imagem de Fundo</div>
               <div className={styles.imgDrop} onClick={() => nativeBgRef.current?.click()}>
-                {nativeBgImg ? '✓ Imagem adicionada — trocar' : '+ Adicionar imagem de fundo'}
+                {nativeBgImg ? '✓ Imagem — clique para trocar' : '+ Adicionar imagem de fundo'}
               </div>
               <input type="file" ref={nativeBgRef} accept="image/*" onChange={handleNativeBgImg} />
               {nativeBgImg && (
@@ -454,26 +461,58 @@ export default function Generator() {
             </section>
 
             <section className={styles.section}>
-              <div className={styles.secTitle}>Fundo do Texto</div>
-              <div className={styles.colorRow}>
-                {[
-                  { label: 'Transp.',  value: 'transparent' },
-                  { label: 'Preto',    value: '#000000cc'   },
-                  { label: 'Branco',   value: '#ffffffcc'   },
-                ].map(opt => (
-                  <button
-                    key={opt.value}
-                    className={`${styles.textBgBtn} ${nativeTextBg===opt.value ? styles.active : ''}`}
-                    onClick={() => setNativeTextBg(opt.value)}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-                <label className={styles.colorPickerLabel} title="Cor personalizada">
-                  <span className={styles.colorPickerIcon}>🎨</span>
-                  <input type="color" value={nativeTextBg.replace(/cc$/, '')} onChange={e => setNativeTextBg(e.target.value + 'cc')} className={styles.colorPickerInput} />
-                </label>
+              <div className={styles.secTitleRow}>
+                <div className={styles.secTitle}>Blocos de Texto</div>
+                <button className={styles.addBlockBtn} onClick={addBlock}>+ Novo bloco</button>
               </div>
+
+              {nativeBlocks.map((block, i) => (
+                <div key={block.id} className={styles.blockCard}>
+                  <div className={styles.blockHeader}>
+                    <span className={styles.blockNum}>Bloco {i + 1}</span>
+                    {nativeBlocks.length > 1 && (
+                      <button className={styles.blockRemove} onClick={() => removeBlock(block.id)}>×</button>
+                    )}
+                  </div>
+
+                  <textarea
+                    className={styles.inp}
+                    style={{ minHeight: 60, resize: 'vertical', lineHeight: 1.5, marginBottom: 6 }}
+                    value={block.text}
+                    onChange={e => updateBlock(block.id, 'text', e.target.value)}
+                    placeholder="Digite o texto..."
+                  />
+
+                  <label className={styles.fieldLabel}>Cor de fundo</label>
+                  <div className={styles.colorRow}>
+                    {['#000000','#c0392b','#27ae60','#2980b9','#ffffff','#e67e22','#8e44ad'].map(c => (
+                      <button
+                        key={c}
+                        className={`${styles.colorSwatch} ${block.bgColor === c ? styles.swatchActive : ''}`}
+                        style={{ background: c, border: c === '#ffffff' ? '1px solid #ccc' : 'none' }}
+                        onClick={() => updateBlock(block.id, 'bgColor', c)}
+                      />
+                    ))}
+                    <label className={styles.colorPickerLabel} title="Cor personalizada">
+                      <span className={styles.colorPickerIcon}>🎨</span>
+                      <input type="color" value={block.bgColor} onChange={e => updateBlock(block.id, 'bgColor', e.target.value)} className={styles.colorPickerInput} />
+                    </label>
+                  </div>
+
+                  <label className={styles.fieldLabel} style={{ marginTop: 8 }}>Posição na imagem</label>
+                  <div className={styles.seg}>
+                    {(['top','middle','bottom'] as const).map(pos => (
+                      <button
+                        key={pos}
+                        className={`${styles.segBtn} ${block.position === pos ? styles.active : ''}`}
+                        onClick={() => updateBlock(block.id, 'position', pos)}
+                      >
+                        {pos === 'top' ? '▲ Topo' : pos === 'middle' ? '● Meio' : '▼ Base'}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </section>
           </>
         )}
@@ -569,9 +608,8 @@ export default function Generator() {
           )}
           {templateType === 'native' && (
             <NativePreview
-              text={tweetText}
+              blocks={nativeBlocks}
               bgImageUrl={nativeBgImg}
-              textBg={nativeTextBg}
               format={format}
               width={previewWidth}
             />

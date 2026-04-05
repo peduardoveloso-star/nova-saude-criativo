@@ -159,6 +159,65 @@
 .actPng { background: #00B4D8; border-color: #00B4D8; color: #fff; }
 .actPng:hover { background: #0099b8; }
 
+/* ── Native block cards ───────────────────────────────────────────────────── */
+.secTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.secTitleRow .secTitle { margin-bottom: 0; }
+
+.addBlockBtn {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  background: rgba(0,180,216,.12);
+  border: 1px solid #00B4D8;
+  color: #00B4D8;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.addBlockBtn:hover { background: #00B4D8; color: #fff; }
+
+.blockCard {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.blockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.blockNum {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.blockRemove {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+  transition: color .15s;
+}
+.blockRemove:hover { color: #e0243a; }
+
 /* ── NEW: color swatch row ────────────────────────────────────────────────── */
 .colorRow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
 
